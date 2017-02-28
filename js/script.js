@@ -23,6 +23,8 @@ var menuItemsUrl =
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
+var aboutPageUrl = "snippets/about.html"
+
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
   var targetElem = document.querySelector(selector);
@@ -159,6 +161,35 @@ dc.loadMenuItems = function (categoryShort) {
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
 };
+
+dc.loadAboutPage = function(){
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    aboutPageUrl,
+    buildAndShowAboutPageHTML,
+    false)
+}
+
+function buildAndShowAboutPageHTML (aboutHTML){
+  // generate a random number between 1 and 5
+  var randomStars = Math.ceil(Math.random() * 5);
+
+  // mark the stars that are filled in
+  for (var i=1; i<= randomStars; i++){
+    aboutHTML = insertProperty(aboutHTML, "rate"+i, "fa fa-star");
+  }
+  
+  // set the remainder to be empty
+  for (var i=randomStars+1; i<= 5; i++){
+    aboutHTML = insertProperty(aboutHTML, "rate"+i, "fa fa-star-o");
+  }
+
+  // update the text field with the rating
+  aboutHTML = insertProperty(aboutHTML, "rating", randomStars);
+
+  // insert the updated snippet
+  insertHtml("#main-content", aboutHTML);
+}
 
 
 // Builds HTML for the categories page based on the data
