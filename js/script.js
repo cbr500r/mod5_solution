@@ -176,16 +176,16 @@ function buildAndShowAboutPageHTML (aboutHTML){
 
   // mark the stars that are filled in
   for (var i=1; i<= randomStars; i++){
-    aboutHTML = insertProperty(aboutHTML, "rate"+i, "fa fa-star");
+    aboutHTML = insertProperty(aboutHTML, "star"+i, "fa fa-star");
   }
   
   // set the remainder to be empty
   for (var i=randomStars+1; i<= 5; i++){
-    aboutHTML = insertProperty(aboutHTML, "rate"+i, "fa fa-star-o");
+    aboutHTML = insertProperty(aboutHTML, "star"+i, "fa fa-star-o");
   }
 
   // update the text field with the rating
-  aboutHTML = insertProperty(aboutHTML, "rating", randomStars);
+  aboutHTML = insertProperty(aboutHTML, "stars", randomStars);
 
   // insert the updated snippet
   insertHtml("#main-content", aboutHTML);
